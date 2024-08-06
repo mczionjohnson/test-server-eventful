@@ -56,7 +56,7 @@ connection()
 
 app.use("/api/v1/events", eventRouter)
 app.use("/api/v1/user", userRouter)
-app.use("/api/v1/", indexRouter)
+app.use("/api/v1", indexRouter)
 
 
 
