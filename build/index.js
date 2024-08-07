@@ -38,5 +38,5 @@ app.use(httpLogger_1.default);
 // schedule.scheduleJob("* * * * *", guestReminderCron)
 app.use("/api/v1/events", events_1.default);
 app.use("/api/v1/user", user_1.default);
-app.use("/api/v1/", index_1.default);
+app.use("/api/v1", index_1.default);
 exports.default = app;
