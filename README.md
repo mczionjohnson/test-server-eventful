@@ -1,10 +1,5 @@
-# eventful
-[![Build Status]]
-[![Coverage Status]]
-[![Maintainability]]
-[![Test Coverage]] 
+### EVENTFUL  
 
-  
 > Eventful-api is an api for a event app where users can checkout and create various events of their choice.
 
 ## Project Overview  
@@ -22,7 +17,6 @@ A Template for Eventful-api with the features below.
 * Typescript
 
 ## Base URL
-https://test-server-eventful.onrender.com/api/v1
 https://eventful-server.hostless.app/api/v1
 
 ## Setting up locally
@@ -32,13 +26,13 @@ https://eventful-server.hostless.app/api/v1
 4. Use the format in `.env.example` file to add configure the API
 5. Run `npm install` to install dependencies
 6. Start app with `npm start`
+7. Start background worker with `npm run worker`
   
 ## Test
 Run `npm test`
 
 ## Live API
 API is currently live at 
-[https://test-server-eventful.onrender.com/api/v1] (https://test-server-eventful.onrender.com/api/v1)
 [https://eventful-server.hostless.app/api/v1] (https://eventful-server.hostless.app/api/v1)
 
 ## Documentation
