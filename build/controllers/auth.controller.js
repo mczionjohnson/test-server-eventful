@@ -103,7 +103,7 @@ const memLogin = async (req, res) => {
         // a function to create token for user
         // returns a token with signature with payload and automatic headers
         res.cookie('jwt', token, { httpOnly: true });
-        return res.json({ token });
+        return res.json({ message: "logged in successfully, token in cookies, expires in an hour" });
     }
 };
 exports.memLogin = memLogin;

@@ -350,7 +350,7 @@ const patchEvent = async (req, res) => {
     const { eventId } = req.params;
     const user = req.body.user;
     const id = user._id;
-    const { title, host, tags, description, location, ticketPrice, eventDate, eventTime, rsvp, reminder, //returned in UTC "2024-07-27T15:00:00.000Z"
+    const { location, eventDate, eventTime, rsvp, reminder, //returned in UTC "2024-07-27T15:00:00.000Z"
      } = req.body;
     try {
         const event = await eventSchema_1.Event.findOne({
@@ -358,23 +358,8 @@ const patchEvent = async (req, res) => {
         });
         if (event != null) {
             let payload = {};
-            if (title) {
-                payload.title = title;
-            }
-            if (host) {
-                payload.host = host;
-            }
-            if (tags) {
-                payload.tags = tags;
-            }
-            if (description) {
-                payload.description = description;
-            }
             if (location) {
                 payload.location = location;
-            }
-            if (ticketPrice) {
-                payload.ticketPrice = ticketPrice;
             }
             if (eventDate) {
                 payload.eventDate = eventDate;

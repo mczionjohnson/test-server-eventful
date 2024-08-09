@@ -9,7 +9,7 @@ const indexRouter = express_1.default.Router();
 const loginSignup_middleware_1 = require("../middleware/loginSignup.middleware");
 const loginSignup_validation_1 = require("../middleware/validation/loginSignup.validation");
 const auth_controller_1 = require("../controllers/auth.controller");
-// import checkAuth from "../middleware/auth.middleware";
+const auth_middleware_1 = __importDefault(require("../middleware/auth.middleware"));
 indexRouter.get("/", (req, res) => {
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     return res.json({ message: "Welcome to Eventful" });
@@ -20,9 +20,8 @@ indexRouter.get('/logout', (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
     res.redirect('/');
 });
-// add check auth
 // QR scanner 
-indexRouter.get("/scan", (req, res) => {
+indexRouter.get("/scan", auth_middleware_1.default, (req, res) => {
     return res.render("index");
 });
 //to verify scanned qr
