@@ -46,7 +46,7 @@ https://documenter.getpostman.com/view/17125846/2sA3kaCyxx
 
 # ERD
 (Entity relationship diagram) on Figma
-https://www.figma.com/board/foib0hqK3dJnGhpFeUbvta/Eventful-ALTSCHOOL-AUG-2024?t=xjXDDM5C29YS60Q0-0
+https://whimsical.com/eventful-altschool-aug-2024-7f72DVLyh3fCLkbrdCWSwc 
 
 
 ## Discovered an issue
