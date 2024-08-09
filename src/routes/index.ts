@@ -11,7 +11,7 @@ import {
 } from "../middleware/validation/loginSignup.validation";
 
 import { memLogin, memSignup, scanner } from "../controllers/auth.controller";
-// import checkAuth from "../middleware/auth.middleware";
+import checkAuth from "../middleware/auth.middleware";
 
 
 
@@ -29,9 +29,8 @@ indexRouter.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-// add check auth
 // QR scanner 
-indexRouter.get("/scan", (req, res) => {
+indexRouter.get("/scan", checkAuth, (req, res) => {
 
   return res.render("index")
 })

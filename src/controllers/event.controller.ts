@@ -368,12 +368,7 @@ export const patchEvent = async (req: Request, res: Response) => {
   const id: string = user._id;
 
   const {
-    title,
-    host,
-    tags,
-    description,
     location,
-    ticketPrice,
     eventDate,
     eventTime,
     rsvp,
@@ -390,23 +385,8 @@ export const patchEvent = async (req: Request, res: Response) => {
       type Org = { [key: string]: string }
       let payload: Org = {}
 
-      if (title) {
-        payload.title = title;
-      }
-      if (host) {
-        payload.host = host;
-      }
-      if (tags) {
-        payload.tags = tags;
-      }
-      if (description) {
-        payload.description = description;
-      }
       if (location) {
         payload.location = location;
-      }
-      if (ticketPrice) {
-        payload.ticketPrice = ticketPrice;
       }
       if (eventDate) {
         payload.eventDate = eventDate;

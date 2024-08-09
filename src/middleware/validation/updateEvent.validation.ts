@@ -5,42 +5,7 @@ const Joi = BaseJoi.extend(JoiDate);
 
 
 export const eventUpdateSchema = Joi.object({
-  title: Joi.string()
-    .pattern(new RegExp("[A-Za-z0-9]"))
-    .messages({
-      "string.pattern.base":
-        "Title can be alphanumeric",
-    }),
-  host: Joi.string()
-    .pattern(new RegExp("[A-Za-z0-9]"))
-    .messages({
-      "string.pattern.base":
-        "Host can be alphanumeric",
-    }),
-  tags: Joi.string()
-    .pattern(new RegExp("[A-Za-z0-9]|[0-9A-Z]|[0-9a-z],?@?_?-?&?#? ?"))
-    .messages({
-      "string.pattern.base":
-        "Tags can be alphanumeric, it can also contain , @ _ - & : #",
-    }),
-  ticketStyle: Joi.string()
-    .pattern(new RegExp("^(Regular|Standard|Invitation)$"))
-    .messages({
-      "string.pattern.base":
-        "Ticket Style can be Regular, Standard or strictly by Invitation",
-    }),
-  ticketPrice: Joi.string()
-    .pattern(new RegExp("^[0-9]+ ?(USD|GBP|EUR|NGN)$"))//9000 NGN
-    .messages({
-      "string.pattern.base":
-        "Ticket price can be USD, GBP, EUR or NGN",
-    }),
 
-  description: Joi.string()
-    .messages({
-      "string.pattern.base":
-        "Description can match any character",
-    }),
   location: Joi.string()
     .pattern(new RegExp("[A-Za-z0-9]|[0-9A-Z]|[0-9a-z],?@?_?-?&? ?"))//? sets u optional"
     .messages({
