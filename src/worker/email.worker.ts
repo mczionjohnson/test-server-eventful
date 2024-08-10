@@ -2,9 +2,24 @@ import dotenv from "dotenv";
 import nodemailer from "nodemailer"
 
 dotenv.config();
+import { google } from "googleapis"
 
-import { ITicket, Ticket } from "../models/ticketSchema";
+const OAuth2 = google.auth.OAuth2;
 
+const myOAuth2Client = new OAuth2(
+    process.env.OAUTH_CLIENTID,
+    process.env.OAUTH_CLIENT_SECRET,
+    "https://developers.google.com/oauthplayground"
+)
+
+myOAuth2Client.setCredentials({
+    refresh_token: process.env.OAUTH_REFRESH_TOKEN,
+});
+
+
+import { ITicket } from "../models/ticketSchema";
+
+const accessToken = myOAuth2Client.getAccessToken()
 
 let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -15,6 +30,7 @@ let transporter = nodemailer.createTransport({
         clientId: process.env.OAUTH_CLIENTID,
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
         refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+        accessToken: accessToken || ''
     },
 } as nodemailer.TransportOptions);
 

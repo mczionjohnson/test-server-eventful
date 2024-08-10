@@ -7,6 +7,13 @@ exports.SendSMS = exports.SendEventDeleteEmail = exports.SendTicketUpdateEmail =
 const dotenv_1 = __importDefault(require("dotenv"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 dotenv_1.default.config();
+const googleapis_1 = require("googleapis");
+const OAuth2 = googleapis_1.google.auth.OAuth2;
+const myOAuth2Client = new OAuth2(process.env.OAUTH_CLIENTID, process.env.OAUTH_CLIENT_SECRET, "https://developers.google.com/oauthplayground");
+myOAuth2Client.setCredentials({
+    refresh_token: process.env.OAUTH_REFRESH_TOKEN,
+});
+const accessToken = myOAuth2Client.getAccessToken();
 let transporter = nodemailer_1.default.createTransport({
     service: "gmail",
     auth: {
@@ -16,6 +23,7 @@ let transporter = nodemailer_1.default.createTransport({
         clientId: process.env.OAUTH_CLIENTID,
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
         refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+        accessToken: accessToken || ''
     },
 });
 //re usable function
