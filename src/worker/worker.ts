@@ -1,12 +1,11 @@
 import { Worker } from "./queue.worker"
-
 import {
     SendEmail, SendSMS, SendWelcomeEmail,
     SendLoginAlert, SendEventCreationEmail,
     SendTicketPurchaseEmail, SendQRScannerEmail,
     SendGlobalReminder, SendTicketReminder,
     SendCreatorReminder, SendEventUpdateEmail,
-    SendEventDeleteEmail, SendTicketUpdateEmail,
+    SendEventDeleteEmail,
 } from './email.worker';
 
 
@@ -24,5 +23,4 @@ Worker().listenToQueue({
     SendCreatorReminder,
     SendEventDeleteEmail,
     SendEventUpdateEmail,
-    SendTicketUpdateEmail,
 })

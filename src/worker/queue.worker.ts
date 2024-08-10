@@ -64,11 +64,6 @@ export const Worker = () => {
           jobs[job.data.jobName](job.data);
           done(null, { message: "Update Alert sent" });
           break;
-          case 'SendTicketUpdateEmail':
-            console.log('processing update ticket alert job now')
-            jobs[job.data.jobName](job.data);
-            done(null, { message: "Update Alert sent" });
-            break;
         case 'SendEventDeleteEmail':
           console.log('processing delete event alert job now')
           jobs[job.data.jobName](job.data);

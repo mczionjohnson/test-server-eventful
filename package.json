@@ -2,7 +2,7 @@
   "name": "eventful",
   "version": "1.0.0",
   "description": "it's your passport to a world of unforgettable moments",
-  "main": "./build/start.js",
+  "main": "index.js",
   "scripts": {
     "build": "rimraf ./build && tsc -b",
     "auto": "rimraf ./build && ts-node ./src/index.ts",
@@ -10,7 +10,6 @@
     "b": "tsc -b",
     "test": "jest --watch --detectOpenHandles",
     "dev": "rm -rf ./public && mkdir ./public && rimraf ./build && tsc -b && nodemon ./build/start.js",
-    "start": "rm -rf ./public && mkdir ./public && rimraf ./build && tsc -b && node ./build/start.js",
     "worker": "nodemon ./src/worker/worker.ts",
     "mkpub": "rm -rf ./public && mkdir ./public"
   },
@@ -49,7 +48,6 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-rate-limit": "^7.3.1",
-    "googleapis": "^140.0.1",
     "helmet": "^7.1.0",
     "html5-qrcode": "^2.3.8",
     "joi": "^17.13.3",

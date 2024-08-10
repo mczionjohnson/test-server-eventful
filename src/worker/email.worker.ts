@@ -2,24 +2,10 @@ import dotenv from "dotenv";
 import nodemailer from "nodemailer"
 
 dotenv.config();
-import { google } from "googleapis"
 
-const OAuth2 = google.auth.OAuth2;
+import { ITicket, Ticket } from "../models/ticketSchema";
+import { IEvent, Event } from "../models/eventSchema";
 
-const myOAuth2Client = new OAuth2(
-    process.env.OAUTH_CLIENTID,
-    process.env.OAUTH_CLIENT_SECRET,
-    "https://developers.google.com/oauthplayground"
-)
-
-myOAuth2Client.setCredentials({
-    refresh_token: process.env.OAUTH_REFRESH_TOKEN,
-});
-
-
-import { ITicket } from "../models/ticketSchema";
-
-const accessToken = myOAuth2Client.getAccessToken()
 
 let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -30,7 +16,6 @@ let transporter = nodemailer.createTransport({
         clientId: process.env.OAUTH_CLIENTID,
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
         refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-        accessToken: accessToken || ''
     },
 } as nodemailer.TransportOptions);
 
@@ -198,23 +183,6 @@ export const SendEventUpdateEmail = (data: {
 
     messenger(sender, email, subject, body)
 }
-export const SendTicketUpdateEmail = (data: {
-    jobId: number,
-    jobName: string,
-    email: string,
-    title: string,
-}) => {
-    let sender = "mczionjohnson@gmail.com"
-    let subject = `Updated Reminder Alert`
-    let email = data.email
-    let title = data.title
-
-    let body = `<p style="font-size:16px;color:#666;" >Hi, <br> Your ticket reminder for ${title} was updated successfully. If this is not you please change password immediately. </p>`
-
-    messenger(sender, email, subject, body)
-}
-SendTicketUpdateEmail
-
 export const SendEventDeleteEmail = (data: {
     jobId: number,
     jobName: string,
