@@ -1,5 +1,4 @@
-### EVENTFUL  
-
+## EVENTFUL  
 > Eventful-api is an api for a event app where users can checkout and create various events of their choice.
 
 ## Project Overview  
@@ -9,7 +8,12 @@ A Template for Eventful-api with the features below.
 1. Users can create an account and log in.  
 2. Logged-in Users can checkout latest events or search for an event with keywords.  
 3. Logged-in users can create upcoming events and manage them accordingly.
-3. Logged-in users can buy tickets to events.
+4. Even creators can set reminders for their event attendees
+5. Logged-in users can buy tickets to events and set an event reminder.
+6. QR codes are generated and sent to logged-in users at ticket purchase
+7. Events can be shared on socials like Twitter, Whatsapp, and Facebook.
+8. Eventful provides analytics for creators and users on different levels like tickets, attendees, guest etc.
+
 
 ## Technologies
 * Nodejs
@@ -38,7 +42,7 @@ API is currently live at
 ## Documentation
 https://documenter.getpostman.com/view/17125846/2sA3kaCyxx
 
-# ERD
+## ERD
 (Entity relationship diagram) on Figma
 https://whimsical.com/eventful-altschool-aug-2024-7f72DVLyh3fCLkbrdCWSwc 
 
