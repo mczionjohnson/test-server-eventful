@@ -10,15 +10,21 @@ import { ITicket, Ticket } from "../models/ticketSchema";
 const messenger = (sender: string, email: string, subject: string, body: string) => {
 
     let transporter = nodemailer.createTransport({
-        service: "gmail",
+        // service: "gmail",
+        // auth: {
+        //     type: "OAuth2",
+        //     user: process.env.MAIL_USERNAME,
+        //     pass: process.env.MAIL_PASSWORD,
+        //     clientId: process.env.OAUTH_CLIENTID,
+        //     clientSecret: process.env.OAUTH_CLIENT_SECRET,
+        //     refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+        // },
+        host: "smtp.gmail.com",
+        port: 587,
         auth: {
-            type: "OAuth2",
             user: process.env.MAIL_USERNAME,
             pass: process.env.MAIL_PASSWORD,
-            clientId: process.env.OAUTH_CLIENTID,
-            clientSecret: process.env.OAUTH_CLIENT_SECRET,
-            refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-        },
+        }
     } as nodemailer.TransportOptions);
 
     let mailOptions = {
