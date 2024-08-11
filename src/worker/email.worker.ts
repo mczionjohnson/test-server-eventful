@@ -4,23 +4,23 @@ import nodemailer from "nodemailer"
 dotenv.config();
 
 import { ITicket, Ticket } from "../models/ticketSchema";
-import { IEvent, Event } from "../models/eventSchema";
 
-
-let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        type: "OAuth2",
-        user: process.env.MAIL_USERNAME,
-        pass: process.env.MAIL_PASSWORD,
-        clientId: process.env.OAUTH_CLIENTID,
-        clientSecret: process.env.OAUTH_CLIENT_SECRET,
-        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-    },
-} as nodemailer.TransportOptions);
 
 //re usable function
 const messenger = (sender: string, email: string, subject: string, body: string) => {
+
+    let transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            type: "OAuth2",
+            user: process.env.MAIL_USERNAME,
+            pass: process.env.MAIL_PASSWORD,
+            clientId: process.env.OAUTH_CLIENTID,
+            clientSecret: process.env.OAUTH_CLIENT_SECRET,
+            refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+        },
+    } as nodemailer.TransportOptions);
+
     let mailOptions = {
         from: sender,
         to: email,
