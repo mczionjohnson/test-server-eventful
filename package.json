@@ -4,15 +4,10 @@
   "description": "it's your passport to a world of unforgettable moments",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf ./build && tsc -b",
-    "auto": "rimraf ./build && ts-node ./src/index.ts",
-    "d": "rimraf ./build",
-    "b": "tsc -b",
     "test": "jest --watch --detectOpenHandles",
     "dev": "rm -rf ./public && mkdir ./public && rimraf ./build && tsc -b && nodemon ./build/start.js",
     "start": "rm -rf ./public && mkdir ./public && rimraf ./build && tsc -b && node ./build/start.js",
-    "worker": "node ./build/worker/worker.js",
-    "mkpub": "rm -rf ./public && mkdir ./public"
+    "worker": "node ./build/worker/worker.js"
   },
   "keywords": [],
   "author": "Zion Johnson",
