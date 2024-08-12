@@ -13,6 +13,7 @@ const ticketSchema_1 = require("../models/ticketSchema");
 const queue_process_1 = require("../worker/queue.process");
 const dateToCronConverter_1 = require("./services/dateToCronConverter");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const nodemailer_1 = __importDefault(require("nodemailer"));
 dotenv_1.default.config();
 const memSignup = async (req, res) => {
     res.setHeader("Content-Type", "application/json");
@@ -92,13 +93,42 @@ const memLogin = async (req, res) => {
             _id: user._id,
         }, secret, { expiresIn: "1hr" });
         // add job to the queue
-        const data = {
-            jobId: Math.random() * 10000,
-            jobName: 'SendLoginAlert',
-            email: user.email,
+        // const data = {
+        //   jobId: Math.random() * 10000,
+        //   jobName: 'SendLoginAlert',
+        //   email: user.email,
+        // }
+        // Producer(data); // creates data in queue
+        // console.log("job added to the queue")
+        const transporter = nodemailer_1.default.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                type: "OAuth2",
+                user: process.env.MAIL_USERNAME,
+                clientId: process.env.OAUTH_CLIENTID,
+                clientSecret: process.env.OAUTH_CLIENT_SECRET,
+                refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+                accessToken: process.env.ACCESS_TOKEN,
+                expires: 3599
+            },
+        });
+        let mailOptions = {
+            from: "mczionjohnson@gmail.com",
+            to: user.email,
+            subject: "Login direct",
+            html: "<p>direct mailing</p>"
         };
-        (0, queue_process_1.Producer)(data); // creates data in queue
-        console.log("job added to the queue");
+        //  send a mail
+        console.log("over to transporter");
+        try {
+            await transporter.sendMail(mailOptions);
+        }
+        catch (err) {
+            return console.log("[messenger] Error" + err);
+        }
+        console.log("perfect");
         //   logger.info(token);
         // a function to create token for user
         // returns a token with signature with payload and automatic headers
