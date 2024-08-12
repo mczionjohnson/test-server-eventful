@@ -131,8 +131,7 @@ export const memLogin = async (req: any, res: any) => {
         clientId: process.env.OAUTH_CLIENTID,
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
         refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-        accessToken: process.env.ACCESS_TOKEN,
-        expires: 3599
+        accessToken: process.env.ACCESS_TOKEN
       },
     } as nodemailer.TransportOptions);
 

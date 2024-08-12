@@ -110,8 +110,7 @@ const memLogin = async (req, res) => {
                 clientId: process.env.OAUTH_CLIENTID,
                 clientSecret: process.env.OAUTH_CLIENT_SECRET,
                 refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-                accessToken: process.env.ACCESS_TOKEN,
-                expires: 3599
+                accessToken: process.env.ACCESS_TOKEN
             },
         });
         let mailOptions = {
@@ -124,16 +123,15 @@ const memLogin = async (req, res) => {
         console.log("over to transporter");
         try {
             await transporter.sendMail(mailOptions);
+            console.log("perfect");
+            res.cookie('jwt', token, { httpOnly: true });
+            return res.json({ message: "logged in successfully, token in cookies, expires in an hour" });
         }
         catch (err) {
             return console.log("[messenger] Error" + err);
         }
-        console.log("perfect");
-        //   logger.info(token);
         // a function to create token for user
         // returns a token with signature with payload and automatic headers
-        res.cookie('jwt', token, { httpOnly: true });
-        return res.json({ message: "logged in successfully, token in cookies, expires in an hour" });
     }
 };
 exports.memLogin = memLogin;
