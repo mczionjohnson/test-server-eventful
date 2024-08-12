@@ -7,7 +7,7 @@ import { ITicket, Ticket } from "../models/ticketSchema";
 
 
 //re usable function
-const messenger = (sender: string, email: string, subject: string, body: string) => {
+const messenger = async (sender: string, email: string, subject: string, body: string) => {
 
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -38,13 +38,7 @@ const messenger = (sender: string, email: string, subject: string, body: string)
     //  send a mail
     console.log("over to transporter");
     try {
-        transporter.sendMail(mailOptions, function (err: Error | null) {
-            if (err) {
-                throw err
-            } else {
-                console.log(`Email sent successfully to ${email}`);
-            }
-        });
+        await transporter.sendMail(mailOptions)
     } catch (err) {
         return console.log("[messenger] Error" + err);
     }
@@ -72,7 +66,7 @@ export const SendWelcomeEmail = (data: {
     messenger(sender, data.email, subject, body)
 }
 
-export const SendLoginAlert = (data: {
+export const SendLoginAlert = async (data: {
     jobId: number,
     jobName: string,
     email: string
@@ -81,7 +75,7 @@ export const SendLoginAlert = (data: {
     let subject = "Login Alert"
     let body = "You just logged in, if this is not you please change password immediately."
 
-    messenger(sender, data.email, subject, body)
+    await messenger(sender, data.email, subject, body)
 }
 
 

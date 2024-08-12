@@ -8,7 +8,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 dotenv_1.default.config();
 //re usable function
-const messenger = (sender, email, subject, body) => {
+const messenger = async (sender, email, subject, body) => {
     let transporter = nodemailer_1.default.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -36,14 +36,7 @@ const messenger = (sender, email, subject, body) => {
     //  send a mail
     console.log("over to transporter");
     try {
-        transporter.sendMail(mailOptions, function (err) {
-            if (err) {
-                throw err;
-            }
-            else {
-                console.log(`Email sent successfully to ${email}`);
-            }
-        });
+        await transporter.sendMail(mailOptions);
     }
     catch (err) {
         return console.log("[messenger] Error" + err);
@@ -60,11 +53,11 @@ const SendWelcomeEmail = (data) => {
     messenger(sender, data.email, subject, body);
 };
 exports.SendWelcomeEmail = SendWelcomeEmail;
-const SendLoginAlert = (data) => {
+const SendLoginAlert = async (data) => {
     let sender = "mczionjohnson@gmail.com";
     let subject = "Login Alert";
     let body = "You just logged in, if this is not you please change password immediately.";
-    messenger(sender, data.email, subject, body);
+    await messenger(sender, data.email, subject, body);
 };
 exports.SendLoginAlert = SendLoginAlert;
 const SendEventCreationEmail = (data) => {
