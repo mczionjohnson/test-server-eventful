@@ -12,10 +12,20 @@ const messenger = (sender, email, subject, body) => {
     let transporter = nodemailer_1.default.createTransport({
         host: "smtp.gmail.com",
         port: 465,
+        // auth: {
+        //     user: process.env.MAIL_USERNAME,
+        //     pass: process.env.MAIL_PASSWORD,
+        // }
+        secure: true,
         auth: {
+            type: "OAuth2",
             user: process.env.MAIL_USERNAME,
-            pass: process.env.MAIL_PASSWORD,
-        }
+            clientId: process.env.OAUTH_CLIENTID,
+            clientSecret: process.env.OAUTH_CLIENT_SECRET,
+            refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+            accessToken: "ya29.a0AcM612yh3H4tf-zeHqNikwZVogYPkz85tPy4BUTYg3Nhg37N9nWQfHBbFe8_dNgZXY-4GqGgAdvawUz0YkklRzeT9k7kT5fqjYzOl0UQW4jfWsx130qqtM6ZsrzTkks1dyhlxeU_gAUPWtdqRUrpQIlxCpwEKssiPb4raCgYKAVASARESFQHGX2MicraACNXwd6Lg7VP_B7-7wQ0171",
+            expires: 3599
+        },
     });
     let mailOptions = {
         from: sender,
