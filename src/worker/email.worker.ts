@@ -27,13 +27,17 @@ const messenger = (sender: string, email: string, subject: string, body: string)
 
     //  send a mail
     console.log("over to transporter");
-    transporter.sendMail(mailOptions, function (err: Error | null, data: nodemailer.SentMessageInfo) {
-        if (err) {
-            console.log("Error " + err);
-        } else {
-            console.log(`Email sent successfully to ${email}`);
-        }
-    });
+    try {
+        transporter.sendMail(mailOptions, function (err: Error | null) {
+            if (err) {
+                throw err
+            } else {
+                console.log(`Email sent successfully to ${email}`);
+            }
+        });
+    } catch (err) {
+        return console.log("Error " + err);
+    }
 
 }
 

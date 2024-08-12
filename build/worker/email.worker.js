@@ -25,14 +25,19 @@ const messenger = (sender, email, subject, body) => {
     };
     //  send a mail
     console.log("over to transporter");
-    transporter.sendMail(mailOptions, function (err, data) {
-        if (err) {
-            console.log("Error " + err);
-        }
-        else {
-            console.log(`Email sent successfully to ${email}`);
-        }
-    });
+    try {
+        transporter.sendMail(mailOptions, function (err) {
+            if (err) {
+                throw err;
+            }
+            else {
+                console.log(`Email sent successfully to ${email}`);
+            }
+        });
+    }
+    catch (err) {
+        return console.log("Error " + err);
+    }
 };
 const SendEmail = (data) => {
     console.log('Sending email to', data.email);
