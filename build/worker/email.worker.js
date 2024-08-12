@@ -23,7 +23,7 @@ const messenger = (sender, email, subject, body) => {
             clientId: process.env.OAUTH_CLIENTID,
             clientSecret: process.env.OAUTH_CLIENT_SECRET,
             refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-            accessToken: "ya29.a0AcM612yh3H4tf-zeHqNikwZVogYPkz85tPy4BUTYg3Nhg37N9nWQfHBbFe8_dNgZXY-4GqGgAdvawUz0YkklRzeT9k7kT5fqjYzOl0UQW4jfWsx130qqtM6ZsrzTkks1dyhlxeU_gAUPWtdqRUrpQIlxCpwEKssiPb4raCgYKAVASARESFQHGX2MicraACNXwd6Lg7VP_B7-7wQ0171",
+            accessToken: process.env.ACCESS_TOKEN,
             expires: 3599
         },
     });
@@ -46,7 +46,7 @@ const messenger = (sender, email, subject, body) => {
         });
     }
     catch (err) {
-        return console.log("Error " + err);
+        return console.log("[messenger] Error" + err);
     }
 };
 const SendEmail = (data) => {
