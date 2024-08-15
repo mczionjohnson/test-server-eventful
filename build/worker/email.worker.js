@@ -37,9 +37,10 @@ const messenger = async (sender, email, subject, body) => {
     console.log("over to transporter");
     try {
         await transporter.sendMail(mailOptions);
+        return console.log(`Email sent successfully to ${email}`);
     }
     catch (err) {
-        return console.log("[messenger] Error" + err);
+        return console.log("[messenger error]:" + err);
     }
 };
 const SendEmail = (data) => {
