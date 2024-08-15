@@ -112,53 +112,16 @@ export const memLogin = async (req: any, res: any) => {
     );
 
     // add job to the queue
-    // const data = {
-    //   jobId: Math.random() * 10000,
-    //   jobName: 'SendLoginAlert',
-    //   email: user.email,
-    // }
-
-    // Producer(data); // creates data in queue
-    // console.log("job added to the queue")
-
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        type: "OAuth2",
-        user: process.env.MAIL_USERNAME,
-        clientId: process.env.OAUTH_CLIENTID,
-        clientSecret: process.env.OAUTH_CLIENT_SECRET,
-        refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-        accessToken: process.env.ACCESS_TOKEN
-      },
-    } as nodemailer.TransportOptions);
-
-    let mailOptions = {
-      from: "mczionjohnson@gmail.com",
-      to: user.email,
-      subject: "Login direct",
-      html: "<p>direct mailing</p>"
-    };
-
-    //  send a mail
-    console.log("over to transporter");
-    try {
-      await transporter.sendMail(mailOptions)
-
-      console.log("perfect");
-      res.cookie('jwt', token, { httpOnly: true });
-      return res.json({ message: "logged in successfully, token in cookies, expires in an hour" });
-
-    } catch (err) {
-      return console.log("[messenger] Error" + err);
+    const data = {
+      jobId: Math.random() * 10000,
+      jobName: 'SendLoginAlert',
+      email: user.email,
     }
+    Producer(data); // creates data in queue
+    console.log("job added to the queue")
 
-
-
-    // a function to create token for user
-    // returns a token with signature with payload and automatic headers
+    res.cookie('jwt', token, { httpOnly: true });
+    return res.json({ message: "logged in successfully, token in cookies, expires in an hour" })
 
   }
 };
