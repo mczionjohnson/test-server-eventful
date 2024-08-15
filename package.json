@@ -10,7 +10,7 @@
     "b": "tsc -b",
     "test": "jest --watch --detectOpenHandles",
     "dev": "rm -rf ./public && mkdir ./public && rimraf ./build && tsc -b && nodemon ./build/start.js",
-    "start": "rm -rf ./public && mkdir ./public && rimraf ./build && tsc -b && node ./build/start.js",
+    "start": "rm -rf ./public && mkdir ./public && node ./build/start.js",
     "worker": "node ./build/worker/worker.js",
     "mkpub": "rm -rf ./public && mkdir ./public"
   },
